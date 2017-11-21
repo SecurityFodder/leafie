@@ -57,5 +57,3 @@ class Syslog:
   def error(self, message):
     "Send a syslog error message."
     self.send(message, Level.ERR)
-
-  # ... add your own stuff here
