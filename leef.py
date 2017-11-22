@@ -25,7 +25,6 @@ import syslog_client
 __version__ = '0.1.0'
 
 class LEEF_Logger:
-    import syslog_client
     """LEEF LOGGER"""
     # LEEF Headers
     version_major = None
@@ -51,16 +50,17 @@ class LEEF_Logger:
         if delimiter not in ['\t', '|', '^']:
             raise ValueError("Delimeter must be '\\t', '|' or '^'")
         self.delimiter = delimiter
-        self.log = syslog_client
+        self.log = syslog_client.Syslog(dest)
+        self.log.send("Lets go phishing", syslog_client.Level.INFO)
 
     def logEvent(self, event_id, keys):
         """
         Log an event
         """
-        log = self._createEventString(event_id, keys)
-        print(log)
-        self.log.send(  log,
-                        self.log.INFO)
+        msg = self._createEventString(event_id, keys)
+        print(msg)
+        #syslog here
+        self.log.send(msg, syslog_client.Level.INFO)
         #return self._createEventString(event_id, keys)
 
     def _createEventString(self, event_id, keys):

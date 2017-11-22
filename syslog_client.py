@@ -1,15 +1,3 @@
-"""
-Remote syslog client.
-
-Works by sending UDP messages to a remote syslog server. The remote server
-must be configured to accept logs from the network.
-
-License: PUBLIC DOMAIN
-Author: Christian Stigen Larsen
-
-For more information, see RFC 3164.
-"""
-
 import socket
 
 class Facility:
